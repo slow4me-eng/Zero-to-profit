@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: zero-to-profit
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-6
+      - key: CYCLE_MINUTES
+        value: "30"
+      - key: DASHBOARD_PASSWORD
+        sync: false
