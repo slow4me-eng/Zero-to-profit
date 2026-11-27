@@ -16,7 +16,7 @@ Return concise, concrete and testable advice. Distinguish evidence from assumpti
 def ask(role, prompt):
     key=os.getenv("OPENAI_API_KEY","").strip()
     if not key: return {"report":f"Demo mode: configure OPENAI_API_KEY to activate {role}.", "ideas":[]}
-    client=OpenAI(api_key=key)
+    client=OpenAI(api_key=key, base_url="https://generativelanguage.googleapis.com/v1beta/openai/")
     r=client.chat.completions.create(model=os.getenv("OPENAI_MODEL","gpt-6"),
        messages=[{"role":"system","content":RULES+"\nRole: "+ROLES[role]+"\nReturn JSON only."},
                  {"role":"user","content":prompt}],
